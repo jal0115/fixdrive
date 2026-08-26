@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FixDrive - Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body id="dashboardPage">
+
+  <!-- ── Header ── -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <span>🔧</span>
+        <span class="logo-text">FixDrive</span>
+      </div>
+      <nav class="header-nav">
+        <a href="#services">Үйлчилгээ</a>
+        <a href="#booking">Захиалга</a>
+        <button id="logoutBtn" class="btn-logout">Гарах</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="container">
+      <h2>Машины засварыг онлайнаар захиал</h2>
+      <p>Гэрээсээ гарахгүйгээр цаг захиалаад, мэргэжлийн үйлчилгээ авна уу.</p>
+      <a href="#booking" class="btn-primary">Цаг захиалах</a>
+    </div>
+  </section>
+
+  <!-- ── Үйлчилгээ ── -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Үйлчилгээний жагсаалт</h2>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <span class="service-icon">🛢️</span>
+          <h3>Тосны солиулт</h3>
+          <p class="service-duration">⏱ 30 минут</p>
+          <p class="service-price">💰 25,000₮-аас</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">🔋</span>
+          <h3>Батарей шалгалт</h3>
+          <p class="service-duration">⏱ 20 минут</p>
+          <p class="service-price">💰 15,000₮-аас</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">🛞</span>
+          <h3>Дугуй солиулт</h3>
+          <p class="service-duration">⏱ 45 минут</p>
+          <p class="service-price">💰 20,000₮-аас</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">❄️</span>
+          <h3>Агааржуулагч цэвэрлэгээ</h3>
+          <p class="service-duration">⏱ 60 минут</p>
+          <p class="service-price">💰 40,000₮-аас</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">🔦</span>
+          <h3>Гал асаах систем</h3>
+          <p class="service-duration">⏱ 40 минут</p>
+          <p class="service-price">💰 30,000₮-аас</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">🧰</span>
+          <h3>Ерөнхий оношилгоо</h3>
+          <p class="service-duration">⏱ 90 минут</p>
+          <p class="service-price">💰 50,000₮-аас</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Захиалгын форм ── -->
+  <section class="booking" id="booking">
+    <div class="container">
+      <h2 class="section-title">Цаг захиалах</h2>
+      <form id="bookingForm" class="booking-form">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Таны нэр</label>
+            <input type="text" id="customerName" placeholder="Овог Нэр" required />
+          </div>
+          <div class="form-group">
+            <label>Утасны дугаар</label>
+            <input type="tel" id="phoneNumber" placeholder="8888-8888" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Машины марк</label>
+            <input type="text" id="carBrand" placeholder="Toyota, Hyundai..." required />
+          </div>
+          <div class="form-group">
+            <label>Улсын дугаар</label>
+            <input type="text" id="carPlate" placeholder="УНА 1234" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Үйлчилгээний төрөл</label>
+          <select id="serviceType" required>
+            <option value="">-- Сонгоно уу --</option>
+            <option value="Тосны солиулт">Тосны солиулт</option>
+            <option value="Батарей шалгалт">Батарей шалгалт</option>
+            <option value="Дугуй солиулт">Дугуй солиулт</option>
+            <option value="Агааржуулагч цэвэрлэгээ">Агааржуулагч цэвэрлэгээ</option>
+            <option value="Гал асаах систем">Гал асаах систем</option>
+            <option value="Ерөнхий оношилгоо">Ерөнхий оношилгоо</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Огноо</label>
+            <input type="date" id="bookingDate" required />
+          </div>
+          <div class="form-group">
+            <label>Цаг</label>
+            <input type="time" id="bookingTime" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submitBtn">
+          Захиалга илгээх
+        </button>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Success Modal ── -->
+  <div id="successModal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <span class="modal-icon">✅</span>
+      <h3>Амжилттай!</h3>
+      <p>Таны цаг захиалга амжилттай бүртгэгдлээ.</p>
+      <p class="modal-sub">Бид тантай удахгүй холбогдох болно.</p>
+      <button id="modalCloseBtn" class="btn-primary">Хаах</button>
+    </div>
+  </div>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
