@@ -1,29 +1,5 @@
-// ── Нэвтрэх логик ──
-const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'fixdrive2025';
-
-const loginForm = document.getElementById('loginForm');
-
-if (loginForm) {
-  loginForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const errorMsg = document.getElementById('errorMsg');
-
-    if (username === ADMIN_USER && password === ADMIN_PASS) {
-      sessionStorage.setItem('fixdrive_auth', 'true');
-      window.location.href = 'dashboard.html';
-    } else {
-      errorMsg.textContent = 'Нэвтрэх нэр эсвэл нууц үг буруу байна.';
-    }
-  });
-}
-
 // ── Dashboard хамгаалалт ──
 const isDashboard = document.getElementById('dashboardPage');
-
 if (isDashboard) {
   const auth = sessionStorage.getItem('fixdrive_auth');
   if (!auth) {
@@ -33,7 +9,6 @@ if (isDashboard) {
 
 // ── Гарах ──
 const logoutBtn = document.getElementById('logoutBtn');
-
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function () {
     sessionStorage.removeItem('fixdrive_auth');
@@ -43,47 +18,63 @@ if (logoutBtn) {
 
 // ── Захиалгын форм ──
 const bookingForm = document.getElementById('bookingForm');
-
 if (bookingForm) {
   bookingForm.addEventListener('submit', async function (e) {
     e.preventDefault();
 
+    const errorMsg = document.getElementById('errorMsg');
     const submitBtn = document.getElementById('submitBtn');
-    submitBtn.textContent = 'Илгээж байна...';
-    submitBtn.disabled = true;
 
-    const bookingData = {
-      customer_name: document.getElementById('customerName').value.trim(),
-      phone_number: document.getElementById('phoneNumber').value.trim(),
-      car_brand: document.getElementById('carBrand').value.trim(),
-      car_plate: document.getElementById('carPlate').value.trim(),
-      service_type: document.getElementById('serviceType').value,
-      booking_date: document.getElementById('bookingDate').value,
-      booking_time: document.getElementById('bookingTime').value,
-    };
+    // Утгуудыг цуглуул
+    const customerName = document.getElementById('customerName').value.trim();
+    const phoneNumber  = document.getElementById('phoneNumber').value.trim();
+    const carBrand     = document.getElementById('carBrand').value.trim();
+    const carPlate     = document.getElementById('carPlate').value.trim();
+    const serviceType  = document.getElementById('serviceType').value;
+    const bookingDate  = document.getElementById('bookingDate').value;
+    const bookingTime  = document.getElementById('bookingTime').value;
 
-    const { error } = await supabase
-      .from('bookings')
-      .insert([bookingData]);
-
-    if (error) {
-      alert('Алдаа гарлаа: ' + error.message);
-      submitBtn.textContent = 'Захиалга илгээх';
-      submitBtn.disabled = false;
+    // Validation
+    if (!customerName || !phoneNumber || !carBrand || !carPlate || !serviceType || !bookingDate || !bookingTime) {
+      errorMsg.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Бүх талбарыг бөглөнө үү.';
       return;
     }
 
-    // ── Амжилттай ──
-    document.getElementById('successModal').classList.remove('hidden');
-    bookingForm.reset();
-    submitBtn.textContent = 'Захиалга илгээх';
+    // Loading төлөв
+    errorMsg.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Илгээж байна...';
+
+    // Supabase руу илгээх
+    const { error } = await supabase
+      .from('bookings')
+      .insert([{
+        customer_name: customerName,
+        phone_number:  phoneNumber,
+        car_brand:     carBrand,
+        car_plate:     carPlate,
+        service_type:  serviceType,
+        booking_date:  bookingDate,
+        booking_time:  bookingTime,
+      }]);
+
+    // Товч буцаах
     submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Захиалга илгээх';
+
+    if (error) {
+      errorMsg.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Алдаа гарлаа: ' + error.message;
+      return;
+    }
+
+    // Амжилттай
+    bookingForm.reset();
+    document.getElementById('successModal').classList.remove('hidden');
   });
 }
 
 // ── Modal хаах ──
 const modalCloseBtn = document.getElementById('modalCloseBtn');
-
 if (modalCloseBtn) {
   modalCloseBtn.addEventListener('click', function () {
     document.getElementById('successModal').classList.add('hidden');
