@@ -3,159 +3,280 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FixDrive - Dashboard</title>
+  <title>FixDrive — Dashboard</title>
   <link rel="stylesheet" href="css/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-<body id="dashboardPage">
+<body class="dash-page" id="dashboardPage">
 
-  <!-- ── Header ── -->
-  <header class="header">
-    <div class="header-inner">
-      <div class="header-logo">
-        <span>🔧</span>
-        <span class="logo-text">FixDrive</span>
+  <!-- ── Navbar ── -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <i class="fa-solid fa-wrench"></i>
+        <span><span class="w">Fix</span><span class="o">Drive</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#services"><i class="fa-solid fa-list"></i> Үйлчилгээ</a>
+        <a href="#booking"><i class="fa-solid fa-calendar"></i> Цаг захиалах</a>
+
+        <!-- Захиалсан цаг -->
+        <div class="booked-preview hidden" id="bookedPreview">
+          <i class="fa-regular fa-clock"></i>
+          <span id="previewText">—</span>
+          <button class="btn-cancel-small" id="cancelBookingBtn">
+            <i class="fa-solid fa-xmark"></i> Цуцлах
+          </button>
+        </div>
+
+        <button id="logoutBtn" class="btn-logout">
+          <i class="fa-solid fa-right-from-bracket"></i> Гарах
+        </button>
       </div>
-      <nav class="header-nav">
-        <a href="#services">Үйлчилгээ</a>
-        <a href="#booking">Захиалга</a>
-        <button id="logoutBtn" class="btn-logout">Гарах</button>
-      </nav>
     </div>
-  </header>
+  </nav>
 
-  <!-- ── Hero ── -->
-  <section class="hero">
-    <div class="container">
-      <h2>Машины засварыг онлайнаар захиал</h2>
-      <p>Гэрээсээ гарахгүйгээр цаг захиалаад, мэргэжлийн үйлчилгээ авна уу.</p>
-      <a href="#booking" class="btn-primary">Цаг захиалах</a>
-    </div>
-  </section>
+  <!-- ── Main ── -->
+  <main class="main-grid">
 
-  <!-- ── Үйлчилгээ ── -->
-  <section class="services" id="services">
-    <div class="container">
-      <h2 class="section-title">Үйлчилгээний жагсаалт</h2>
+    <!-- ── Зүүн: CTA ── -->
+    <section class="col-cta">
+      <div class="cta-sticky">
+        <div class="cta-badge">
+          <i class="fa-solid fa-bolt"></i> Онлайн захиалга
+        </div>
+        <h1>Машины засварыг<br /><span class="o">онлайнаар захиал</span></h1>
+        <p>Гэрээсээ гарахгүйгээр цаг захиалаад, мэргэжлийн үйлчилгээ авна уу.</p>
+        <a href="#booking" class="btn-primary">
+          <i class="fa-solid fa-calendar-check"></i> Цаг захиалах
+        </a>
+        <div class="cta-stats">
+          <div class="stat">
+            <span class="stat-num">7+</span>
+            <span class="stat-label">Үйлчилгээ</span>
+          </div>
+          <div class="stat-div"></div>
+          <div class="stat">
+            <span class="stat-num">24/7</span>
+            <span class="stat-label">Онлайн</span>
+          </div>
+          <div class="stat-div"></div>
+          <div class="stat">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Найдвартай</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Дунд: Үйлчилгээ ── -->
+    <section class="col-services" id="services">
+      <div class="section-eyebrow">
+        <i class="fa-solid fa-star"></i> Үйлчилгээний жагсаалт
+      </div>
       <div class="services-grid">
 
-        <div class="service-card">
-          <span class="service-icon">🛢️</span>
-          <h3>Тосны солиулт</h3>
-          <p class="service-duration">⏱ 30 минут</p>
-          <p class="service-price">💰 25,000₮-аас</p>
+        <div class="svc-card">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-oil-can"></i>
+          </div>
+          <div class="svc-body">
+            <h3>Тос солиулах</h3>
+            <div class="svc-meta">
+              <span class="svc-free">Үнэгүй</span>
+            </div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <span class="service-icon">🔋</span>
-          <h3>Батарей шалгалт</h3>
-          <p class="service-duration">⏱ 20 минут</p>
-          <p class="service-price">💰 15,000₮-аас</p>
+        <div class="svc-card">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-sliders"></i>
+          </div>
+          <div class="svc-body">
+            <h3>Тэнхлэгийн тохиргоо</h3>
+            <div class="svc-meta">
+              <span class="svc-price">30,000–70,000₮</span>
+            </div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <span class="service-icon">🛞</span>
-          <h3>Дугуй солиулт</h3>
-          <p class="service-duration">⏱ 45 минут</p>
-          <p class="service-price">💰 20,000₮-аас</p>
+        <div class="svc-card">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+          </div>
+          <div class="svc-body">
+            <h3>Явах эд ангийн оношилгоо</h3>
+            <div class="svc-meta">
+              <span class="svc-price">30,000₮</span>
+            </div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <span class="service-icon">❄️</span>
-          <h3>Агааржуулагч цэвэрлэгээ</h3>
-          <p class="service-duration">⏱ 60 минут</p>
-          <p class="service-price">💰 40,000₮-аас</p>
+        <div class="svc-card">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-droplet"></i>
+          </div>
+          <div class="svc-body">
+            <h3>Цэгэн тосолгоо</h3>
+            <div class="svc-meta">
+              <span class="svc-price">30,000₮</span>
+            </div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <span class="service-icon">🔦</span>
-          <h3>Гал асаах систем</h3>
-          <p class="service-duration">⏱ 40 минут</p>
-          <p class="service-price">💰 30,000₮-аас</p>
+        <div class="svc-card">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-temperature-low"></i>
+          </div>
+          <div class="svc-body">
+            <h3>Хөргөлтийн шингэн солих</h3>
+            <div class="svc-meta">
+              <span class="svc-price">40,000₮</span>
+            </div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <span class="service-icon">🧰</span>
-          <h3>Ерөнхий оношилгоо</h3>
-          <p class="service-duration">⏱ 90 минут</p>
-          <p class="service-price">💰 50,000₮-аас</p>
+        <div class="svc-card">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <div class="svc-body">
+            <h3>Ерөнхий үзлэг</h3>
+            <div class="svc-meta">
+              <span class="svc-free">Үнэгүй</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </div>
+          <div class="svc-body">
+            <h3>Эд анги солих</h3>
+            <div class="svc-meta">
+              <span class="svc-price">30,000–50,000₮</span>
+            </div>
+          </div>
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Захиалгын форм ── -->
-  <section class="booking" id="booking">
-    <div class="container">
-      <h2 class="section-title">Цаг захиалах</h2>
-      <form id="bookingForm" class="booking-form">
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Таны нэр</label>
-            <input type="text" id="customerName" placeholder="Овог Нэр" required />
-          </div>
-          <div class="form-group">
-            <label>Утасны дугаар</label>
-            <input type="tel" id="phoneNumber" placeholder="8888-8888" required />
-          </div>
+    <!-- ── Баруун: Форм ── -->
+    <section class="col-form" id="booking">
+      <div class="form-card">
+        <div class="form-card-title">
+          <i class="fa-solid fa-calendar-plus o"></i>
+          <span>Цаг захиалах</span>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Машины марк</label>
-            <input type="text" id="carBrand" placeholder="Toyota, Hyundai..." required />
-          </div>
-          <div class="form-group">
-            <label>Улсын дугаар</label>
-            <input type="text" id="carPlate" placeholder="УНА 1234" required />
-          </div>
-        </div>
+        <form id="bookingForm">
 
-        <div class="form-group">
-          <label>Үйлчилгээний төрөл</label>
-          <select id="serviceType" required>
-            <option value="">-- Сонгоно уу --</option>
-            <option value="Тосны солиулт">Тосны солиулт</option>
-            <option value="Батарей шалгалт">Батарей шалгалт</option>
-            <option value="Дугуй солиулт">Дугуй солиулт</option>
-            <option value="Агааржуулагч цэвэрлэгээ">Агааржуулагч цэвэрлэгээ</option>
-            <option value="Гал асаах систем">Гал асаах систем</option>
-            <option value="Ерөнхий оношилгоо">Ерөнхий оношилгоо</option>
-          </select>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Огноо</label>
-            <input type="date" id="bookingDate" required />
+          <div class="form-row">
+            <div class="field">
+              <label><i class="fa-solid fa-user"></i> Таны нэр</label>
+              <input type="text" id="customerName" placeholder="Овог Нэр" required />
+            </div>
+            <div class="field">
+              <label><i class="fa-solid fa-phone"></i> Утасны дугаар</label>
+              <input type="tel" id="phoneNumber" placeholder="99001122" required />
+            </div>
           </div>
-          <div class="form-group">
-            <label>Цаг</label>
-            <input type="time" id="bookingTime" required />
+
+          <div class="form-row">
+            <div class="field">
+              <label><i class="fa-solid fa-car"></i> Машины марк</label>
+              <input type="text" id="carBrand" placeholder="Toyota, Hyundai..." required />
+            </div>
+            <div class="field">
+              <label><i class="fa-solid fa-hashtag"></i> Улсын дугаар</label>
+              <input type="text" id="carPlate" placeholder="1234УНА" required />
+            </div>
           </div>
-        </div>
 
-        <button type="submit" class="btn-primary" id="submitBtn">
-          Захиалга илгээх
-        </button>
+          <div class="field">
+            <label><i class="fa-solid fa-list-check"></i> Үйлчилгээний төрөл (олныг сонгож болно)</label>
+            <div class="multi-select" id="serviceSelect">
+              <label class="svc-check"><input type="checkbox" value="Тос солиулах" /> Тос солиулах <span class="tag-free">Үнэгүй</span></label>
+              <label class="svc-check"><input type="checkbox" value="Тэнхлэгийн тохиргоо" /> Тэнхлэгийн тохиргоо <span class="tag-price">30,000–70,000₮</span></label>
+              <label class="svc-check"><input type="checkbox" value="Явах эд ангийн оношилгоо" /> Явах эд ангийн оношилгоо <span class="tag-price">30,000₮</span></label>
+              <label class="svc-check"><input type="checkbox" value="Цэгэн тосолгоо" /> Цэгэн тосолгоо <span class="tag-price">30,000₮</span></label>
+              <label class="svc-check"><input type="checkbox" value="Хөргөлтийн шингэн солих" /> Хөргөлтийн шингэн солих <span class="tag-price">40,000₮</span></label>
+              <label class="svc-check"><input type="checkbox" value="Ерөнхий үзлэг" /> Ерөнхий үзлэг <span class="tag-free">Үнэгүй</span></label>
+              <label class="svc-check"><input type="checkbox" value="Эд анги солих" /> Эд анги солих <span class="tag-price">30,000–50,000₮</span></label>
+            </div>
+          </div>
 
-      </form>
-    </div>
-  </section>
+          <div class="form-row">
+            <div class="field">
+              <label><i class="fa-regular fa-calendar"></i> Огноо</label>
+              <input type="date" id="bookingDate" required />
+            </div>
+            <div class="field">
+              <label><i class="fa-regular fa-clock"></i> Цаг</label>
+              <input type="time" id="bookingTime" required />
+            </div>
+          </div>
+
+          <div id="errorMsg" class="error-msg"></div>
+
+          <button type="submit" class="btn-primary full" id="submitBtn">
+            <i class="fa-solid fa-paper-plane"></i> Захиалга илгээх
+          </button>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
 
   <!-- ── Success Modal ── -->
   <div id="successModal" class="modal-overlay hidden">
     <div class="modal-box">
-      <span class="modal-icon">✅</span>
+      <div class="modal-icon">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
       <h3>Амжилттай!</h3>
       <p>Таны цаг захиалга амжилттай бүртгэгдлээ.</p>
       <p class="modal-sub">Бид тантай удахгүй холбогдох болно.</p>
-      <button id="modalCloseBtn" class="btn-primary">Хаах</button>
+      <button id="modalCloseBtn" class="btn-primary full">
+        <i class="fa-solid fa-xmark"></i> Хаах
+      </button>
     </div>
   </div>
 
+  <!-- ── Cancel Confirm Modal ── -->
+  <div id="cancelModal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <i class="fa-solid fa-triangle-exclamation" style="color:#f87171"></i>
+      </div>
+      <h3>Цаг цуцлах</h3>
+      <p>Та цагаа цуцлах гэж байна. Цуцлахыг зөвшөөрөх үү?</p>
+      <div class="modal-actions">
+        <button id="cancelNoBtn" class="btn-outline full">Үгүй</button>
+        <button id="cancelYesBtn" class="btn-danger full">
+          <i class="fa-solid fa-trash"></i> Тийм, цуцлах
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Cancelled Modal ── -->
+  <div id="cancelledModal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <i class="fa-solid fa-circle-xmark" style="color:#f87171"></i>
+      </div>
+      <h3>Цуцлагдлаа</h3>
+      <p>Таны захиалга цуцлагдлаа.</p>
+      <button id="cancelledCloseBtn" class="btn-primary full">Хаах</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-config.js"></script>
   <script src="js/main.js"></script>
 </body>

@@ -3,34 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FixDrive - Нэвтрэх</title>
+  <title>FixDrive — Нэвтрэх</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-<body>
+<body class="login-page">
 
-  <div class="login-container">
-    <div class="login-box">
+  <div class="login-wrap">
+    <div class="login-card">
 
       <div class="login-logo">
-        <span class="logo-icon">🔧</span>
-        <h1>FixDrive</h1>
-        <p>Car Service Booking Platform</p>
+        <i class="fa-solid fa-wrench"></i>
+        <span><span class="w">Fix</span><span class="o">Drive</span></span>
       </div>
 
+      <p class="login-sub">Засварын үйлчилгээний удирдлагын систем</p>
+
       <form id="loginForm">
-        <div class="form-group">
-          <label for="username">Нэвтрэх нэр</label>
-          <input type="text" id="username" placeholder="Нэвтрэх нэр" required />
+        <div class="field">
+          <label><i class="fa-solid fa-user"></i> Нэвтрэх нэр</label>
+          <input type="text" id="username" placeholder="admin" required />
         </div>
-
-        <div class="form-group">
-          <label for="password">Нууц үг</label>
-          <input type="password" id="password" placeholder="Нууц үг" required />
+        <div class="field">
+          <label><i class="fa-solid fa-lock"></i> Нууц үг</label>
+          <input type="password" id="password" placeholder="••••••••" required />
         </div>
-
-        <div id="errorMsg" class="error-msg"></div>
-
-        <button type="submit" class="btn-login">Нэвтрэх</button>
+        <div id="loginError" class="login-error"></div>
+        <button type="submit" class="btn-orange full">
+          <i class="fa-solid fa-right-to-bracket"></i> Нэвтрэх
+        </button>
       </form>
 
     </div>
