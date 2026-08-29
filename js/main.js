@@ -1,4 +1,120 @@
 // ════════════════════════════
+// AUTH TAB ШИЛЖИЛТ
+// ════════════════════════════
+const tabLogin    = document.getElementById('tabLogin');
+const tabRegister = document.getElementById('tabRegister');
+const loginForm2  = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+
+if (tabLogin && tabRegister) {
+  tabLogin.addEventListener('click', function () {
+    tabLogin.classList.add('active');
+    tabRegister.classList.remove('active');
+    loginForm2.classList.remove('hidden');
+    registerForm.classList.add('hidden');
+  });
+
+  tabRegister.addEventListener('click', function () {
+    tabRegister.classList.add('active');
+    tabLogin.classList.remove('active');
+    registerForm.classList.remove('hidden');
+    loginForm2.classList.add('hidden');
+  });
+}
+
+// ════════════════════════════
+// БҮРТГҮҮЛЭХ ЛОГИК
+// ════════════════════════════
+const registerFormEl = document.getElementById('registerForm');
+if (registerFormEl) {
+  registerFormEl.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const lastName        = document.getElementById('regLastName').value.trim();
+    const firstName       = document.getElementById('regFirstName').value.trim();
+    const phone           = document.getElementById('regPhone').value.trim();
+    const username        = document.getElementById('regUsername').value.trim();
+    const password        = document.getElementById('regPassword').value.trim();
+    const passwordConfirm = document.getElementById('regPasswordConfirm').value.trim();
+    const errorEl         = document.getElementById('registerError');
+    const successEl       = document.getElementById('registerSuccess');
+    const submitBtn       = registerFormEl.querySelector('button[type="submit"]');
+
+    errorEl.textContent   = '';
+    successEl.textContent = '';
+
+    // Validation
+    if (!lastName || !firstName || !phone || !username || !password || !passwordConfirm) {
+      errorEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Бүх талбарыг бөглөнө үү.';
+      return;
+    }
+
+    if (password !== passwordConfirm) {
+      errorEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Нууц үг таарахгүй байна.';
+      return;
+    }
+
+    if (password.length < 6) {
+      errorEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Нууц үг хамгийн багадаа 6 тэмдэгт байх ёстой.';
+      return;
+    }
+
+    if (phone.length < 8) {
+      errorEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Утасны дугаар буруу байна.';
+      return;
+    }
+
+    // Loading
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Бүртгэж байна...';
+
+    // Нэвтрэх нэр давхардаж байгаа эсэх шалгах
+    const { data: existing, error: checkError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('username', username)
+      .maybeSingle();
+
+    if (checkError) {
+      errorEl.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Алдаа гарлаа: ' + checkError.message;
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Бүртгүүлэх';
+      return;
+    }
+
+    if (existing) {
+      errorEl.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Энэ нэвтрэх нэр аль хэдийн бүртгэлтэй байна.';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Бүртгүүлэх';
+      return;
+    }
+
+    // Supabase users table-д хадгалах
+    const { error: insertError } = await supabase
+      .from('users')
+      .insert([{
+        last_name:  lastName,
+        first_name: firstName,
+        phone:      phone,
+        username:   username,
+        password:   password,
+      }]);
+
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Бүртгүүлэх';
+
+    if (insertError) {
+      errorEl.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Алдаа гарлаа: ' + insertError.message;
+      return;
+    }
+
+    // Амжилттай
+    successEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> Бүртгэл амжилттай! Нэвтрэх таб дээр дарж нэвтэрнэ үү.';
+    registerFormEl.reset();
+  });
+}
+
+// ════════════════════════════
 // НЭВТРЭХ ЛОГИК
 // ════════════════════════════
 const loginForm = document.getElementById('loginForm');

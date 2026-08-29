@@ -13,31 +13,79 @@
   <div class="login-wrap">
     <div class="login-card">
 
+      <!-- Лого -->
       <div class="login-logo">
         <i class="fa-solid fa-wrench"></i>
         <span><span class="w">Fix</span><span class="o">Drive</span></span>
       </div>
+      <p class="login-sub">Засварын үйлчилгээний онлайн систем</p>
 
-      <p class="login-sub">Засварын үйлчилгээний удирдлагын систем</p>
+      <!-- Таб -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLogin">
+          <i class="fa-solid fa-right-to-bracket"></i> Нэвтрэх
+        </button>
+        <button class="auth-tab" id="tabRegister">
+          <i class="fa-solid fa-user-plus"></i> Бүртгүүлэх
+        </button>
+      </div>
 
-      <form id="loginForm">
+      <!-- Нэвтрэх форм -->
+      <form id="loginForm" class="auth-form">
         <div class="field">
           <label><i class="fa-solid fa-user"></i> Нэвтрэх нэр</label>
-          <input type="text" id="username" placeholder="admin" required />
+          <input type="text" id="username" placeholder="Нэвтрэх нэр" required />
         </div>
         <div class="field">
           <label><i class="fa-solid fa-lock"></i> Нууц үг</label>
           <input type="password" id="password" placeholder="••••••••" required />
         </div>
-        <div id="loginError" class="login-error"></div>
-        <button type="submit" class="btn-orange full">
+        <div id="loginError" class="form-msg error"></div>
+        <button type="submit" class="btn-primary full">
           <i class="fa-solid fa-right-to-bracket"></i> Нэвтрэх
+        </button>
+      </form>
+
+      <!-- Бүртгүүлэх форм -->
+      <form id="registerForm" class="auth-form hidden">
+        <div class="form-row">
+          <div class="field">
+            <label><i class="fa-solid fa-user"></i> Овог</label>
+            <input type="text" id="regLastName" placeholder="Овог" required />
+          </div>
+          <div class="field">
+            <label><i class="fa-solid fa-user"></i> Нэр</label>
+            <input type="text" id="regFirstName" placeholder="Нэр" required />
+          </div>
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-phone"></i> Утасны дугаар</label>
+          <input type="tel" id="regPhone" placeholder="99001122" required />
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-circle-user"></i> Нэвтрэх нэр</label>
+          <input type="text" id="regUsername" placeholder="Нэвтрэх нэр үүсгэх" required />
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-lock"></i> Нууц үг</label>
+          <input type="password" id="regPassword" placeholder="••••••••" required />
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-lock"></i> Нууц үг давтах</label>
+          <input type="password" id="regPasswordConfirm" placeholder="••••••••" required />
+        </div>
+        <div id="registerError" class="form-msg error"></div>
+        <div id="registerSuccess" class="form-msg success"></div>
+        <button type="submit" class="btn-green full">
+          <i class="fa-solid fa-user-plus"></i> Бүртгүүлэх
         </button>
       </form>
 
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
