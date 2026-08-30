@@ -1,25 +1,29 @@
 // ════════════════════════════
 // AUTH TAB ШИЛЖИЛТ
 // ════════════════════════════
-const tabLogin    = document.getElementById('tabLogin');
-const tabRegister = document.getElementById('tabRegister');
-const loginForm2  = document.getElementById('loginForm');
-const registerForm = document.getElementById('registerForm');
+const tabLogin     = document.getElementById('tabLogin');
+const tabRegister  = document.getElementById('tabRegister');
+const loginFormEl  = document.getElementById('loginForm');
+const registerFormEl2 = document.getElementById('registerForm');
 
 if (tabLogin && tabRegister) {
   tabLogin.addEventListener('click', function () {
     tabLogin.classList.add('active');
     tabRegister.classList.remove('active');
-    loginForm2.classList.remove('hidden');
-    registerForm.classList.add('hidden');
+    loginFormEl.style.display = 'block';
+    registerFormEl2.style.display = 'none';
   });
 
   tabRegister.addEventListener('click', function () {
     tabRegister.classList.add('active');
     tabLogin.classList.remove('active');
-    registerForm.classList.remove('hidden');
-    loginForm2.classList.add('hidden');
+    registerFormEl2.style.display = 'block';
+    loginFormEl.style.display = 'none';
   });
+
+  // Анхны байдал
+  loginFormEl.style.display = 'block';
+  registerFormEl2.style.display = 'none';
 }
 
 // ════════════════════════════
