@@ -216,10 +216,91 @@ body {
   margin: 0 auto;
   padding: 80px 32px 60px;
   display: grid;
-  grid-template-columns: 260px 1fr 360px;
+  grid-template-columns: 280px 1fr;
   gap: 28px;
   align-items: start;
   min-height: 100vh;
+}
+
+/* ════════════════════════════
+   DRAWER
+════════════════════════════ */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(3px);
+  z-index: 200;
+}
+
+.drawer-overlay.hidden {
+  display: none;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 480px;
+  max-width: 95vw;
+  background: var(--card);
+  border-left: 1px solid var(--border);
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 40px rgba(0,0,0,0.1);
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.drawer.hidden {
+  transform: translateX(100%);
+  pointer-events: none;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.drawer-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.drawer-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.drawer-close:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.drawer-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
 }
 
 /* ════════════════════════════

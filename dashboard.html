@@ -19,8 +19,9 @@
       </a>
       <div class="nav-links">
         <a href="#services"><i class="fa-solid fa-list"></i> Үйлчилгээ</a>
-        <a href="#booking"><i class="fa-solid fa-calendar"></i> Цаг захиалах</a>
-
+        <a href="#" id="openBookingBtn">
+            <i class="fa-solid fa-calendar"></i> Цаг захиалах
+        </a>
         <!-- Захиалсан цаг -->
         <div class="booked-preview hidden" id="bookedPreview">
           <i class="fa-regular fa-clock"></i>
@@ -279,5 +280,74 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-config.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- ── Booking Drawer ── -->
+<div class="drawer-overlay hidden" id="drawerOverlay"></div>
+<div class="drawer hidden" id="bookingDrawer">
+  <div class="drawer-header">
+    <h3><i class="fa-solid fa-calendar-plus o"></i> Цаг захиалах</h3>
+    <button class="drawer-close" id="drawerClose">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <form id="bookingForm">
+
+      <div class="form-row">
+        <div class="field">
+          <label><i class="fa-solid fa-user"></i> Таны нэр</label>
+          <input type="text" id="customerName" placeholder="Овог Нэр" required />
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-phone"></i> Утасны дугаар</label>
+          <input type="tel" id="phoneNumber" placeholder="99001122" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label><i class="fa-solid fa-car"></i> Машины марк</label>
+          <input type="text" id="carBrand" placeholder="Toyota, Hyundai..." required />
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-hashtag"></i> Улсын дугаар</label>
+          <input type="text" id="carPlate" placeholder="1234УНА" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label><i class="fa-solid fa-list-check"></i> Үйлчилгээний төрөл (олныг сонгож болно)</label>
+        <div class="multi-select" id="serviceSelect">
+          <label class="svc-check"><input type="checkbox" value="Тос солиулах" /> Тос солиулах <span class="tag-free">Үнэгүй</span></label>
+          <label class="svc-check"><input type="checkbox" value="Тэнхлэгийн тохиргоо" /> Тэнхлэгийн тохиргоо <span class="tag-price">30,000–70,000₮</span></label>
+          <label class="svc-check"><input type="checkbox" value="Явах эд ангийн оношилгоо" /> Явах эд ангийн оношилгоо <span class="tag-price">30,000₮</span></label>
+          <label class="svc-check"><input type="checkbox" value="Цэгэн тосолгоо" /> Цэгэн тосолгоо <span class="tag-price">30,000₮</span></label>
+          <label class="svc-check"><input type="checkbox" value="Хөргөлтийн шингэн солих" /> Хөргөлтийн шингэн солих <span class="tag-price">40,000₮</span></label>
+          <label class="svc-check"><input type="checkbox" value="Ерөнхий үзлэг" /> Ерөнхий үзлэг <span class="tag-free">Үнэгүй</span></label>
+          <label class="svc-check"><input type="checkbox" value="Эд анги солих" /> Эд анги солих <span class="tag-price">30,000–50,000₮</span></label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label><i class="fa-regular fa-calendar"></i> Огноо</label>
+          <input type="date" id="bookingDate" required />
+        </div>
+        <div class="field">
+          <label><i class="fa-regular fa-clock"></i> Цаг (09:00–18:30)</label>
+          <input type="time" id="bookingTime" min="09:00" max="18:30" required />
+        </div>
+      </div>
+
+      <div id="errorMsg" class="error-msg"></div>
+
+      <button type="submit" class="btn-primary full" id="submitBtn">
+        <i class="fa-solid fa-paper-plane"></i> Захиалга илгээх
+      </button>
+
+    </form>
+  </div>
+</div>
+
 </body>
 </html>

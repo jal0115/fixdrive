@@ -119,18 +119,47 @@ if (registerFormEl) {
 // ════════════════════════════
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
-  loginForm.addEventListener('submit', function (e) {
+  loginForm.addEventListener('submit', async function (e) {
     e.preventDefault();
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
     const errorEl  = document.getElementById('loginError');
+    const submitBtn = loginForm.querySelector('button[type="submit"]');
 
+    errorEl.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Нэвтэрж байна...';
+
+    // Admin шалгах
     if (username === 'admin' && password === 'fixdrive2025') {
       sessionStorage.setItem('fixdrive_auth', 'true');
+      sessionStorage.setItem('fixdrive_user', JSON.stringify({ username: 'admin', name: 'Админ' }));
       window.location.href = 'dashboard.html';
-    } else {
-      errorEl.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Нэвтрэх нэр эсвэл нууц үг буруу байна.';
+      return;
     }
+
+    // Supabase users-аас шалгах
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('username', username)
+      .eq('password', password)
+      .maybeSingle();
+
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Нэвтрэх';
+
+    if (error || !user) {
+      errorEl.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Нэвтрэх нэр эсвэл нууц үг буруу байна.';
+      return;
+    }
+
+    sessionStorage.setItem('fixdrive_auth', 'true');
+    sessionStorage.setItem('fixdrive_user', JSON.stringify({
+      username: user.username,
+      name: user.last_name + ' ' + user.first_name,
+    }));
+    window.location.href = 'dashboard.html';
   });
 }
 
