@@ -164,73 +164,124 @@
 
       </div>
     </section>
+    <!-- ── Мэдээлэл хэсэг ── -->
+<section class="col-info" id="info">
+  <div class="section-eyebrow">
+    <i class="fa-solid fa-circle-info"></i> Мэдээлэл
+  </div>
 
-    <!-- ── Баруун: Форм ── -->
-    <section class="col-form" id="booking">
-      <div class="form-card">
-        <div class="form-card-title">
-          <i class="fa-solid fa-calendar-plus o"></i>
-          <span>Цаг захиалах</span>
+  <div class="info-card">
+    <div class="info-header">
+      <i class="fa-solid fa-car-wrench"></i>
+      <h3>Авто машинд зайлшгүй хийх үзлэг үйлчилгээ</h3>
+    </div>
+    <div class="info-grid">
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-oil-can"></i></div>
+        <div class="info-body">
+          <h4>Моторын тос</h4>
+          <p>5,000–8,000км (6 сар)</p>
         </div>
-
-        <form id="bookingForm">
-
-          <div class="form-row">
-            <div class="field">
-              <label><i class="fa-solid fa-user"></i> Таны нэр</label>
-              <input type="text" id="customerName" placeholder="Овог Нэр" required />
-            </div>
-            <div class="field">
-              <label><i class="fa-solid fa-phone"></i> Утасны дугаар</label>
-              <input type="tel" id="phoneNumber" placeholder="99001122" required />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="field">
-              <label><i class="fa-solid fa-car"></i> Машины марк</label>
-              <input type="text" id="carBrand" placeholder="Toyota, Hyundai..." required />
-            </div>
-            <div class="field">
-              <label><i class="fa-solid fa-hashtag"></i> Улсын дугаар</label>
-              <input type="text" id="carPlate" placeholder="1234УНА" required />
-            </div>
-          </div>
-
-          <div class="field">
-            <label><i class="fa-solid fa-list-check"></i> Үйлчилгээний төрөл (олныг сонгож болно)</label>
-            <div class="multi-select" id="serviceSelect">
-              <label class="svc-check"><input type="checkbox" value="Тос солиулах" /> Тос солиулах <span class="tag-free">Үнэгүй</span></label>
-              <label class="svc-check"><input type="checkbox" value="Тэнхлэгийн тохиргоо" /> Тэнхлэгийн тохиргоо <span class="tag-price">30,000–70,000₮</span></label>
-              <label class="svc-check"><input type="checkbox" value="Явах эд ангийн оношилгоо" /> Явах эд ангийн оношилгоо <span class="tag-price">30,000₮</span></label>
-              <label class="svc-check"><input type="checkbox" value="Цэгэн тосолгоо" /> Цэгэн тосолгоо <span class="tag-price">30,000₮</span></label>
-              <label class="svc-check"><input type="checkbox" value="Хөргөлтийн шингэн солих" /> Хөргөлтийн шингэн солих <span class="tag-price">40,000₮</span></label>
-              <label class="svc-check"><input type="checkbox" value="Ерөнхий үзлэг" /> Ерөнхий үзлэг <span class="tag-free">Үнэгүй</span></label>
-              <label class="svc-check"><input type="checkbox" value="Эд анги солих" /> Эд анги солих <span class="tag-price">30,000–50,000₮</span></label>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="field">
-              <label><i class="fa-regular fa-calendar"></i> Огноо</label>
-              <input type="date" id="bookingDate" required />
-            </div>
-            <div class="field">
-              <label><i class="fa-regular fa-clock"></i> Цаг</label>
-              <input type="time" id="bookingTime" required />
-            </div>
-          </div>
-
-          <div id="errorMsg" class="error-msg"></div>
-
-          <button type="submit" class="btn-primary full" id="submitBtn">
-            <i class="fa-solid fa-paper-plane"></i> Захиалга илгээх
-          </button>
-
-        </form>
       </div>
-    </section>
 
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-filter"></i></div>
+        <div class="info-body">
+          <h4>Агаар шүүгч</h4>
+          <p>10,000км (тоосжилттой: 2,500км)</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-filter-circle-xmark"></i></div>
+        <div class="info-body">
+          <h4>Тосны шүүр</h4>
+          <p>Тос солих бүрт</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-wind"></i></div>
+        <div class="info-body">
+          <h4>Шатахууны шүүр</h4>
+          <p>Бензин: 40,000км<br/>Дизель: 20,000км</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-gear"></i></div>
+        <div class="info-body">
+          <h4>Автомат хропны тос</h4>
+          <p>Энгийн: 20,000км (1 жил)<br/>Тусгай: 45,000–60,000км</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-rotate"></i></div>
+        <div class="info-body">
+          <h4>Ремень</h4>
+          <p>Духны: 100,000км<br/>Бусад: 20,000км</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-gears"></i></div>
+        <div class="info-body">
+          <h4>Механик хроп, мост, редуктор</h4>
+          <p>20,000–40,000км (2–3 жил)</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div class="info-body">
+          <h4>Очлуур</h4>
+          <p>Энгийн: 10,000км<br/>Иридиум, платиниум: 20,000км</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-temperature-low"></i></div>
+        <div class="info-body">
+          <h4>Хөргөх шингэн</h4>
+          <p>LLC: 20,000–40,000км (2–3 жил)<br/>Тосол, Антифриз: 10,000км</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-circle-stop"></i></div>
+        <div class="info-body">
+          <h4>Наклад</h4>
+          <p>Урд: 15,000км<br/>Хойд: 30,000км</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Ажлын цаг -->
+    <div class="work-hours">
+      <div class="work-hours-title">
+        <i class="fa-regular fa-clock"></i> Ажлын цаг
+      </div>
+      <div class="work-hours-grid">
+        <div class="work-hour-item">
+          <span class="day">Даваа–Баасан</span>
+          <span class="time">09:00–19:00</span>
+        </div>
+        <div class="work-hour-item">
+          <span class="day">Бямба</span>
+          <span class="time">09:00–17:00</span>
+        </div>
+        <div class="work-hour-item">
+          <span class="day">Ням</span>
+          <span class="time closed">Амарна</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
   </main>
 
   <!-- ── Success Modal ── -->

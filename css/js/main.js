@@ -114,3 +114,13 @@ if (openBookingBtn) openBookingBtn.addEventListener('click', openDrawer);
 if (drawerClose)    drawerClose.addEventListener('click', closeDrawer);
 if (drawerOverlay)  drawerOverlay.addEventListener('click', closeDrawer);
 
+// Ажлын цаг шалгах
+const timeVal  = bookingTime;
+const [h, m]   = timeVal.split(':').map(Number);
+const totalMin = h * 60 + m;
+
+if (totalMin < 9 * 60 || totalMin > 18 * 60 + 30) {
+  errorMsg.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Ажлын цаг 09:00–18:30 байна. Өөр цаг сонгоно уу.';
+  return;
+}
+
