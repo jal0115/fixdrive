@@ -36,6 +36,27 @@
         </button>
       </div>
     </div>
+
+    <div class="nav-links">
+  <a href="#" id="openBookingBtn"><i class="fa-solid fa-calendar"></i> Цаг захиалах</a>
+  <a href="#services"><i class="fa-solid fa-list"></i> Үйлчилгээ</a>
+  <a href="#info"><i class="fa-solid fa-circle-info"></i> Мэдээлэл</a>
+  <a href="#" id="openHistoryBtn"><i class="fa-solid fa-clock-rotate-left"></i> Түүх</a>
+  <a href="#" id="openBadgeBtn"><i class="fa-solid fa-trophy"></i> Миний эрхүүд</a>
+
+  <div class="booked-preview hidden" id="bookedPreview">
+    <i class="fa-regular fa-clock"></i>
+    <span id="previewText">—</span>
+    <button class="btn-cancel-small" id="cancelBookingBtn">
+      <i class="fa-solid fa-xmark"></i> Цуцлах
+    </button>
+  </div>
+
+  <button id="logoutBtn" class="btn-logout">
+    <i class="fa-solid fa-right-from-bracket"></i> Гарах
+  </button>
+</div>
+
   </nav>
 
   <!-- ── Main ── -->
@@ -397,6 +418,38 @@
       </button>
 
     </form>
+  </div>
+</div>
+
+<!-- ── Түүхийн Drawer ── -->
+<div class="drawer-overlay hidden" id="historyOverlay"></div>
+<div class="drawer hidden" id="historyDrawer">
+  <div class="drawer-header">
+    <h3><i class="fa-solid fa-clock-rotate-left o"></i> Үйлчилгээний түүх</h3>
+    <button class="drawer-close" id="historyClose">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="drawer-body" id="historyBody">
+    <div class="loading-state">
+      <i class="fa-solid fa-spinner fa-spin"></i> Ачааллаж байна...
+    </div>
+  </div>
+</div>
+
+<!-- ── Badge Drawer ── -->
+<div class="drawer-overlay hidden" id="badgeOverlay"></div>
+<div class="drawer hidden" id="badgeDrawer">
+  <div class="drawer-header">
+    <h3><i class="fa-solid fa-trophy o"></i> Миний эрхүүд</h3>
+    <button class="drawer-close" id="badgeClose">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="drawer-body" id="badgeBody">
+    <div class="loading-state">
+      <i class="fa-solid fa-spinner fa-spin"></i> Ачааллаж байна...
+    </div>
   </div>
 </div>
 
